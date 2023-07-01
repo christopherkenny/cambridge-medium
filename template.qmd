@@ -44,31 +44,28 @@ author:
         postal-code: 60637
 abstract: |
   This document is a template demonstrating the Cambridge-medium format.
+acknowledgement: |
+  This document is based on the Overleaf template.
 keywords: [template, demo]
 bibliography: bibliography.bib
 ---
 
-\noindent This Quarto template is unofficial and based on Overleaf's APSR template. The first sentence of the article should not be indented, so keep the above command. Some examples of commonly used commands and features are listed below, to help you get started.
+\noindent This Quarto template is unofficial and based on Overleaf's Cambridge Medium Template template. The first sentence of the article should not be indented, so keep the above command. Some examples of commonly used commands and features are listed below, to help you get started.
 
 Since we are in Quarto, you can cite with an `@` symbol, like @knuth1984texbook. As seen below, you can mix markdown and Latex with each other, though it's likely best to mostly use markdown.
 
 ## Introduction {#sec-intro}
 
-add text
+This is based on the Cambridge Medium starter file. It is for preparing manuscript submission only, not for preparing camera-ready versions of manuscripts. Manuscripts will be typeset for publication by the journal, after they have been accepted.
 
 ## Using Figures and Tables
 
-explain
+Figures and tables can be included using LaTeX or Quarto syntax. For information on including figures in Quarto, see [this documentation page](https://quarto.org/docs/authoring/figures.html).
 
-## 
 
 ## Conclusion
 The conclusion text goes here.
 
-
-\begin{acknowledgement}
-Insert the Acknowledgment text here.
-\end{acknowledgement}
 
 ##### Funding Statement
 
@@ -80,7 +77,7 @@ A statement about any financial, professional, contractual or personal relations
 
 ## References
 
-:::{ref}
+:::{#refs}
 :::
 
 ## Appendix {.appendix}

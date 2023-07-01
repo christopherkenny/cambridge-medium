@@ -15,6 +15,7 @@ contributes:
         - "partials/title.tex"
         - "partials/doc-class.tex"
         - "partials/before-body.tex"
+        - "partials/before-bib.tex"
       format-resources:
         - cup-journal.cls
         - cup-logo-new.pdf
