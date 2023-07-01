@@ -1,0 +1,6 @@
+*.pdf
+*.png
+*.rproj
+*.Rproj
+!figs/*.png
+scratch/
