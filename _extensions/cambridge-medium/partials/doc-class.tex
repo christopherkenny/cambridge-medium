@@ -1,0 +1,17 @@
+\documentclass[
+$if(fontsize)$
+  $fontsize$,
+$endif$
+$if(year)$
+year=$year$,
+$endif$
+$if(volume)$
+volume=$volume$,
+$endif$
+$if(journal)$
+journal=$journal$,
+$endif$
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$
+]{cup-journal}

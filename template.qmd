@@ -3,31 +3,86 @@ title: Cambridge-medium Template
 format:
   cambridge-medium-pdf:
     keep-tex: true
-journal: 
+    journal: pa
+    year: 2023
 author:
-  - name: Sarah Malloc
+  - name: F. Author
     affiliations:
-      - name: An Organization
-        department: The Department
-        address: 1 Main St
+      - name: Organization
+        department: First Division
         city: Boston
+        state: Massachusetts
         country: USA
         postal-code: 02210-1022
       - A second affilication
-    orcid: 0000-0000-0000-0000
-    email: sm@example.org
-    url: https://example.org/
-  - name: Eliza Dealloc
+    email: first.author@address.edu # corresponding author gets email
+  - name: S. Author
     affiliations:
-      - Another Affiliation
+     - name: Organization
+        department: Second Division
+        city: Boston
+        state: Massachusetts
+        country: USA
+        postal-code: 02138
+  - name: T. Author
+    affiliations:
+     - name: Organization
+        department: Third Division
+        city: New York
+        state: New York
+        country: USA
+        postal-code: 10012
+  - name: F.T. Author
+    affiliations:
+     - name: Organization
+        department: Political Science
+        city: Chicago
+        state: Illinois
+        country: USA
+        postal-code: 60637
 abstract: |
   This document is a template demonstrating the Cambridge-medium format.
 keywords: [template, demo]
 bibliography: bibliography.bib  
 ---
 
+\noindent This Quarto template is unofficial and based on Overleaf's APSR template. The first sentence of the article should not be indented, so keep the above command. Some examples of commonly used commands and features are listed below, to help you get started.
+
+Since we are in Quarto, you can cite with an `@` symbol, like @knuth1984texbook. As seen below, you can mix markdown and Latex with each other, though it's likely best to mostly use markdown.
+
 ## Introduction {#sec-intro}
 
-*TODO* Create a template that demonstrates the appearance, formatting, layout, and functionality of your format. Learn more about journal formats at <https://quarto.org/docs/journals/>.
+add text
+
+## Using Figures and Tables
+
+explain
+
+## 
+
+## Conclusion
+The conclusion text goes here.
+
+
+\begin{acknowledgement}
+Insert the Acknowledgment text here.
+\end{acknowledgement}
+
+##### Funding Statement
+
+This research was supported by grants from the <funder-name> <doi> (<award ID>); <funder-name> <doi> (<award ID>).
+
+##### Competing Interests
+
+A statement about any financial, professional, contractual or personal relationships or situations that could be perceived to impact the presentation of the work --- or `None' if none exist.
+
+## References
+
+:::{ref}
+:::
+
+## Appendix {.appendix}
+
+Appendix goes here!
 
 

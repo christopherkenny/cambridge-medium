@@ -10,6 +10,13 @@ contributes:
        # - cambridge-medium.lua
     pdf:
       include-in-header: header.tex
+      template-partials:
+        - "partials/_affiliation.tex"
+        - "partials/title.tex"
+        - "partials/doc-class.tex"
+        - "partials/before-body.tex"
+      format-resources:
+        - cup-journal.cls
     #html:
    #   css: styles.css
 
