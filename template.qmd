@@ -2,9 +2,11 @@
 title: Cambridge-medium Template
 format:
   cambridge-medium-pdf:
-    keep-tex: true
+    keep-tex: false
     journal: pa
     year: 2023
+    volume: NA
+    cite-method: biblatex
 author:
   - name: F. Author
     affiliations:
@@ -43,7 +45,7 @@ author:
 abstract: |
   This document is a template demonstrating the Cambridge-medium format.
 keywords: [template, demo]
-bibliography: bibliography.bib  
+bibliography: bibliography.bib
 ---
 
 \noindent This Quarto template is unofficial and based on Overleaf's APSR template. The first sentence of the article should not be indented, so keep the above command. Some examples of commonly used commands and features are listed below, to help you get started.

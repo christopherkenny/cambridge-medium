@@ -24,5 +24,10 @@ $endif$
 $endfor$
 
 $if(keywords)$
-\keywords{$keywords$}
+\keywords{
+  $for(keywords)$
+  $keywords$
+  $sep$ \and
+  $endfor$
+}
 $endif$

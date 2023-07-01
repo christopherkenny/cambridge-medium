@@ -17,6 +17,7 @@ contributes:
         - "partials/before-body.tex"
       format-resources:
         - cup-journal.cls
+        - cup-logo-new.pdf
     #html:
    #   css: styles.css
 
