@@ -69,7 +69,7 @@ The conclusion text goes here.
 
 ##### Funding Statement
 
-This research was supported by grants from the <funder-name> <doi> (<award ID>); <funder-name> <doi> (<award ID>).
+This research was supported by grants from the `<funder-name> <doi> (<award ID>)`; `<funder-name> <doi> (<award ID>)`.
 
 ##### Competing Interests
 
