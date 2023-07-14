@@ -38,8 +38,6 @@ format:
 
 ## Options
 
-*TODO*: If your format has options that can be set via document metadata, describe them.
-
 - Journal options:
   - `default`: - Cambridge Default Journal
   - `small`: - Cambridge Small
