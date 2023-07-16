@@ -55,7 +55,7 @@ format:
   - `jjps`: Japanese Journal of Political Science
   - `ash`: Antimicrobial Stewardship \& Healthcare Epidemiology
   - `pa`: Political Analysis
-  - `pasa`, `pas`: - Publications of the Astronomical Society of Australia
+  - `pasa`, `pas`: Publications of the Astronomical Society of Australia
   - `psrm`, `ram`: Political Science Research and Methods
   - `nws`: Network Science
   - `aas`: Annals of Actuarial Science
