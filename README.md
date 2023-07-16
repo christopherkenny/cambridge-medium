@@ -39,30 +39,30 @@ format:
 ## Options
 
 - Journal options:
-  - `default`: - Cambridge Default Journal
-  - `small`: - Cambridge Small
-  - `medium`: - Cambridge Medium
-  - `large`: - Cambridge Large One
-  - `largetwo`: - Cambridge Large Two
-  - `aog`: - Annals of Glaciology
-  - `jog`: - Journal of Glaciology
-  - `btd`: - Biotechnology Design
-  - `bel`: - Bioelectronics
-  - `one`: - One Health
-  - `qut`: - Quantum Technologies
-  - `cbp`: - Cyber-Physical Systems
-  - `bjps`, `bjpols`, `jps`: - British Journal of Political Science
-  - `jjps`: - Japanese Journal of Political Science
-  - `ash`: - Antimicrobial Stewardship \& Healthcare Epidemiology
+  - `default`: Cambridge Default Journal
+  - `small`: Cambridge Small
+  - `medium`: Cambridge Medium
+  - `large`: Cambridge Large One
+  - `largetwo`: Cambridge Large Two
+  - `aog`: Annals of Glaciology
+  - `jog`: Journal of Glaciology
+  - `btd`: Biotechnology Design
+  - `bel`: Bioelectronics
+  - `one`: One Health
+  - `qut`: Quantum Technologies
+  - `cbp`: Cyber-Physical Systems
+  - `bjps`, `bjpols`, `jps`: British Journal of Political Science
+  - `jjps`: Japanese Journal of Political Science
+  - `ash`: Antimicrobial Stewardship \& Healthcare Epidemiology
   - `pa`: Political Analysis
   - `pasa`, `pas`: - Publications of the Astronomical Society of Australia
   - `psrm`, `ram`: Political Science Research and Methods
-  - `nws`: - Network Science
-  - `aas`: - Annals of Actuarial Science
-  - `mdy`: - Macroeconomic Dynamics
-  - `jlc`: - Journal of Law and Courts
-  - `spq`: - State Politics & Policy Quarterly
-  - `jpup`: - Journal of Public Policy
+  - `nws`: Network Science
+  - `aas`: Annals of Actuarial Science
+  - `mdy`: Macroeconomic Dynamics
+  - `jlc`: Journal of Law and Courts
+  - `spq`: State Politics & Policy Quarterly
+  - `jpup`: Journal of Public Policy
 
 
 
