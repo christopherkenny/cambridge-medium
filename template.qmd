@@ -44,7 +44,7 @@ author:
         postal-code: 60637
 abstract: |
   This document is a template demonstrating the Cambridge-medium format.
-acknowledgement: |
+acknowledgements: |
   This document is based on the Overleaf template.
 keywords: [template, demo]
 bibliography: bibliography.bib
