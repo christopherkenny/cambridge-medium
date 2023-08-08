@@ -4,3 +4,4 @@
 *.Rproj
 !figs/*.png
 scratch/
+NEWS.md
