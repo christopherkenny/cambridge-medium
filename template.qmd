@@ -1,12 +1,11 @@
 ---
-title: Cambridge-medium Template
+title: Cambridge-Medium Template
 format:
   cambridge-medium-pdf:
     keep-tex: false
-    journal: pa
+    journal: medium
     year: 2023
     volume: NA
-    cite-method: biblatex
 author:
   - name: F. Author
     affiliations:
@@ -16,7 +15,7 @@ author:
         state: Massachusetts
         country: USA
         postal-code: 02210-1022
-      - A second affilication
+      - A second affiliation
     email: first.author@address.edu # corresponding author gets email
   - name: S. Author
     affiliations:

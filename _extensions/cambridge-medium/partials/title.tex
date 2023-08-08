@@ -3,31 +3,24 @@ $if(title)$
 $endif$
 
 $for(by-author)$
-\author{$by-author.name.literal$}
+\author{$by-author.name.literal$}%
 $if(by-author.affiliations)$
 $if(by-author.affiliations/first)$
 $for(by-author.affiliations/first)$
-\affiliation{$_affiliation.tex()$}
+\affiliation{$_affiliation.tex()$}%
 $endfor$
 $if(by-author.affiliations/rest/first)$
 $for(by-author.affiliations/rest/first)$
-\affiliation{$_affiliation.tex()$}
+\affiliation{$_affiliation.tex()$}%
 $endfor$
 $endif$
 $endif$
 $endif$
-
 $if(by-author.email)$
 \email{$by-author.email$}
 $endif$
-
 $endfor$
 
 $if(keywords)$
-\keywords{
-  $for(keywords)$
-  $keywords$
-  $sep$ \and
-  $endfor$
-}
+\keywords{$for(keywords)$$keywords$$sep$, $endfor$}
 $endif$
