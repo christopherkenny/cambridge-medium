@@ -2,7 +2,7 @@
 title: Cambridge-Medium Template
 format:
   cambridge-medium-pdf:
-    keep-tex: false
+    keep-tex: true
     journal: medium
     year: 2023
     volume: NA
@@ -15,7 +15,7 @@ author:
         state: Massachusetts
         country: USA
         postal-code: 02210-1022
-      - A second affiliation
+      - A second affiliation, University
     email: first.author@address.edu # corresponding author gets email
   - name: S. Author
     affiliations:
