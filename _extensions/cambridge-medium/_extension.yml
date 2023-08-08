@@ -7,7 +7,6 @@ contributes:
     common:
       toc: false
       number-sections: true
-      mainfont: fbb
       fontfamily: fbb
       pdf-engine: pdflatex
     pdf:
