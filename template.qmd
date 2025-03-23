@@ -16,7 +16,7 @@ author:
         state: Massachusetts
         country: USA
         postal-code: 02210-1022
-      - A second affilication
+      - A second affiliation
     email: first.author@address.edu # corresponding author gets email
   - name: S. Author
     affiliations:
