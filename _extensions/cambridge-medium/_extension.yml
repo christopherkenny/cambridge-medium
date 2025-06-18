@@ -9,6 +9,7 @@ contributes:
       number-sections: true
       fontfamily: fbb
       pdf-engine: pdflatex
+      cite-method: biblatex
     pdf:
       include-in-header: header.tex
       template-partials:
