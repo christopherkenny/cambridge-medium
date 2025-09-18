@@ -75,5 +75,5 @@ Here is the source code for a minimal sample document: [template.qmd](template.q
 
 ## License
 
-This modifies the Overleaf Cambridge Medium Template Class File, available at <https://www.overleaf.com/latex/templates/apsr-american-political-science-review-submission-template/fxffppspqczt>. The original template is licensed under the [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) by Cambridge University Press and Overleaf.
+This modifies the Overleaf Cambridge Medium Template Class File, available at <https://www.overleaf.com/latex/templates/cambridge-medium-template-class-file/zshzqdxjjqkq>. The original template is licensed under the [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) by Cambridge University Press and Overleaf.
 
