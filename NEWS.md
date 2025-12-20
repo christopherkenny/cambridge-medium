@@ -1,3 +1,8 @@
+# cambridge-medium 1.0.2
+
+- Updates the `.cls` file to the spring 2025 version
+- Fixes a typo in the affiliations that would cause only the first affiliation to render as a superscript
+
 # cambridge-medium 1.0.1
 
 - Change default pdf engine to pdflatex, to fix (part of) font issue (#2)
