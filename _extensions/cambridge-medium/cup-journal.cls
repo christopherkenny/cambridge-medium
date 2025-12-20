@@ -165,6 +165,7 @@
   \def\cup@vol{#1}%
 }
 \ProcessOptionsX*<cup>
+\let\@unusedoptionlist\@empty
 \newcommand*\cup@manuscript@communication{communication}
 \newcommand*\cup@manuscript@letter{letter}
 \newcommand*\cup@manuscript@note{note}
@@ -550,7 +551,7 @@
 \newcommand*\cup@etal{\emph{et al.}}
 \def\ps@plain{
   \renewcommand{\@oddhead}{\hfill{\journalnamefont\cup@journal@name}\qquad\thepage}%
-  \renewcommand{\@evenhead}{\thepage\qquad\@author@i\space\cup@etal\hfill}%
+  \renewcommand{\@evenhead}{\thepage\qquad\@author@i\ifcsname @author@ii\endcsname\space\cup@etal\fi\hfill}%
   \renewcommand{\@evenfoot}{}%
   \renewcommand{\@oddfoot}{\@evenfoot}%
 }
@@ -1239,7 +1240,7 @@
   }
     \def\ps@plain{
       \renewcommand{\@oddhead}{\sffamily{\journalnamefont\cup@journal@name}\hfill\thepage}%
-      \renewcommand{\@evenhead}{\sffamily\thepage\hfill\@author@i\space\cup@etal}%
+      \renewcommand{\@evenhead}{\sffamily\thepage\hfill\@author@i\ifcsname @author@ii\endcsname\space\cup@etal\fi}%
       \renewcommand{\@evenfoot}{}%
       \renewcommand{\@oddfoot}{\@evenfoot}%
     }
@@ -1363,7 +1364,7 @@
       \end{@twocolumnfalse}]}
   \def\ps@plain{
       \renewcommand{\@oddhead}{\sffamily{\journalnamefont\cup@journal@name}\hfill\thepage}%
-      \renewcommand{\@evenhead}{\sffamily\thepage\hfill\@author@i\space\cup@etal}%
+      \renewcommand{\@evenhead}{\sffamily\thepage\hfill\@author@i\ifcsname @author@ii\endcsname\space\cup@etal\fi}%
       \renewcommand{\@evenfoot}{}%
       \renewcommand{\@oddfoot}{\@evenfoot}%
     }
@@ -1542,20 +1543,28 @@
   \cup@layout@large
 } 
 
+\def\cup@jnl@pri{
+  \def\cup@journal@name{Cambridge Prisms}
+  \cup@layout@large
+  \providecommand{\cup@reference@code}{%
+    \cambridgea
+  } 
+} 
 
-\def\cup@jnl@bjps{\cup@jnl@jps}
-\def\cup@jnl@bjpols{\cup@jnl@jps}
-\def\cup@jnl@jps{
-  \def\cup@journal@name{British Journal of Political Science}
-  \cup@layout@medium 
-  % \colorlet{structure@color}{green!40!black}
-  % \patchcmd{\@maketitle}
-  %   {\includegraphics[width=26mm]{cup-logo-new}}
-  %   {\parbox{5em}{\fontsize{1em}{1em}\fontfamily{NimbusSans}\bfseries\color{structure@color}British\\Journal of\\Political\\Science}}{}{}
-  \patch@numeric@authors
-  \let\endnote\footnote
-  \let\printendnotes\relax
-}
+\def\cup@jnl@rdi{
+  \def\cup@journal@name{Research Directions}
+  \cup@layout@large
+  \providecommand{\cup@reference@code}{%
+    \cambridgea
+  } 
+} 
+
+\def\cup@jnl@chr{
+  \def\cup@journal@name{Computational Humanities Research}
+  \cup@layout@large
+} 
+
+
 % \def\cup@jnl@jjps{
 %   \def\cup@journal@name{Japanese Journal of Political Science}
 %   \cup@layout@medium 
@@ -1573,6 +1582,7 @@
 %   %   {\scriptsize\textcopyright\ Cambridge University Press \cup@year.}
 % }
 
+% --- Large2 journals --- 
 \def\cup@jnl@ash{
   \def\cup@journal@name{Antimicrobial Stewardship \& Healthcare Epidemiology}
   \cup@layout@largetwo
@@ -1641,6 +1651,490 @@
   \patchcmd{\trfiller}{structure@color}{black}{}{}
   \patchcmd{\thfiller}{structure@color}{black}{}{}
 }
+
+% v1.1: Add NWS, AAS journals to Medium layout
+% --- Medium journals --- 
+\def\cup@jnl@aas{
+  \def\cup@journal@name{Annals of Actuarial Science}
+  \cup@layout@medium
+  \providecommand{\cup@reference@code}{%
+    \RequirePackage[style=apa,backend=biber,natbib]{biblatex}
+    \renewcommand*{\bibfont}{\footnotesize}
+  }
+}
+
+\def\cambridge{
+    \RequirePackage{xpatch}
+    \renewcommand*{\bibfont}{\footnotesize}
+% CambridgeA Citations
+    \DeclareDelimFormat*{nameyeardelim}{\addspace}
+    \DeclareFieldFormat{postnote}{##1}
+    \DeclareFieldFormat{multipostnote}{##1}
+    \renewbibmacro*{name:andothers}{%
+      \ifboolexpr{
+        test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+        and
+        test \ifmorenames
+      }
+        {\ifnumgreater{\value{liststop}}{1}
+           {}
+           {}%
+         \printdelim{andothersdelim}\bibstring{andothers}}
+        {}}
+    \renewcommand*{\revsdnamepunct}{}
+    \xpatchbibmacro{textcite}
+    {\setunit{\addcomma}\usebibmacro{cite:extradate}}
+    {\setunit{\compcitedelim}\usebibmacro{cite:labeldate+extradate}}{}{}
+    \xpatchbibmacro{cite}
+    {\setunit{\addcomma}\usebibmacro{cite:extradate}}
+    {\setunit{\compcitedelim}\usebibmacro{cite:labeldate+extradate}}{}{}
+    \xpatchbibmacro{parencite}
+    {\setunit{\addcomma}\usebibmacro{cite:extradate}}
+    {\setunit{\compcitedelim}\usebibmacro{cite:labeldate+extradate}}{}{}
+    \renewbibmacro*{cite:labeldate+extradate}{%
+      \iffieldundef{labelyear}
+        {}
+        {\printtext[bibhyperref]{%
+           \printlabeldateextra%
+           \setunit{\addspace}%
+           \iffieldundef{origyear}%
+             {}%
+             {\printtext[brackets]{\printorigdate}}%
+        }}}
+% CambridgeA References
+    \DeclareNameAlias{author}{sortname}
+    \DeclareNameAlias{editor}{sortname}
+    \DeclareNameAlias{translator}{sortname}
+    \DeclareNameAlias{byauthor}{sortname}
+    \DeclareNameAlias{byeditor}{sortname}
+    \DeclareNameAlias{bytranslator}{sortname}
+    \DeclareNameAlias{sortname}{family-given}
+    \DeclareNameWrapperFormat{sortname}{\mkbibbold{##1}}
+    \DeclareDelimFormat[bib]{nametitledelim}{\addspace}
+    \DeclareDelimFormat{finalnamedelim}{\addspace\bibstring{and}\space}
+    \DeclareFieldFormat{editortype}{\mkbibparens{##1}}
+    \DeclareDelimFormat{editortypedelim}{\addspace}
+    \DeclareFieldFormat[report]{title}{##1}
+    \DefineBibliographyStrings{english}{%
+        bytranslator = {(trans)},
+        byeditor = {(ed)},
+        editor = {ed},
+        editors = {eds},
+        andothers={et~al},
+        january   = {January},
+        february  = {February},
+        march     = {March},
+        april     = {April},
+        may       = {May},
+        june      = {June},
+        july      = {July},
+        august    = {August},
+        september = {September},
+        october   = {October},
+        november  = {November},
+        december  = {December},
+        phdthesis = {PhD dissertation},
+        version = {ver},
+        nodate = {nd},
+    }
+    \renewbibmacro*{bytranslator}{%
+        \ifnameundef{translator}
+            {}
+            {\setunit{\addcomma\space}%
+            \printnames[bytranslator]{translator}%
+            \setunit{\addspace}%
+            \bibstring{bytranslator}}}
+    \renewbibmacro*{bytranslator+others}{%
+        \ifnameundef{translator}
+        {}
+        {\setunit{\addcomma\space}%
+        \printnames[bytranslator]{translator}%
+        \setunit{\addspace}%
+        \usebibmacro{bytranslator+othersstrg}%
+        \clearname{translator}%
+        \newunit}%
+        \usebibmacro{withothers}}
+    \renewbibmacro*{byeditor}{%
+        \ifnameundef{editor}
+            {}
+            {\setunit{\addcomma\space}%
+            \printnames[byeditor]{editor}%
+            \setunit{\addspace}%
+            \usebibmacro{bytypestrg}{editor}{editor}%
+            \newunit}%
+        \usebibmacro{byeditorx}}
+    \renewbibmacro*{byeditor+others}{%
+        \ifnameundef{editor}
+            {}
+            {\setunit{\addcomma\space}%
+            \printnames[byeditor]{editor}%
+             \setunit{\addspace}%
+             \usebibmacro{editor+othersstrg}%
+            \clearname{editor}%
+            \newunit}%
+        \usebibmacro{byeditorx}%
+        \usebibmacro{bytranslator+others}}
+    \renewbibmacro*{date+extradate}{%
+        \iffieldundef{year}
+            {}
+            {\printtext[parens]{%
+                \iflabeldateisdate
+                    {\printfield{issue}%
+                    \setunit*{\addspace}%
+                    \printdateextra%
+                            \iffieldundef{origyear}{%
+                    }{%
+                    \setunit*{\addspace}%
+                    \printtext[parens]{\printorigdate}%
+                    }}
+               {\printlabeldateextra}}}
+    }% 
+    \DeclareFieldFormat{volume}{vol~##1}
+    \renewbibmacro*{maintitle+title}{%
+      \iffieldsequal{maintitle}{title}
+        {\clearfield{maintitle}%
+         \clearfield{mainsubtitle}%
+         \clearfield{maintitleaddon}}
+        {\iffieldundef{maintitle}
+           {}
+           {\usebibmacro{maintitle}%
+        \setunit{\addcomma\space}
+        \iffieldundef{volume}
+          {}
+          {\printfield{volume}%
+           \printfield{part}%
+           \setunit{\addcomma\space}}}}%
+      \usebibmacro{title}%
+      \newunit}%
+    \xpatchbibdriver{book}
+        {%
+        \printfield{edition}%
+        \newunit
+        \iffieldundef{maintitle}
+            {\printfield{volume}%
+            \printfield{part}}
+            {}%
+        \newunit
+        \printfield{volumes}%
+        }
+        {
+        \setunit{\addcomma\space}%
+        \printfield{edition}%
+        \newunit
+        \iffieldundef{maintitle}
+            {\printfield{volume}%
+            \printfield{part}}
+            {}%
+        \setunit{\addcomma\space}%
+        \printfield{volumes}%
+        }{}{}
+    \xpatchbibdriver{inbook}
+        {%
+        \printfield{edition}%
+        \newunit
+        \iffieldundef{maintitle}
+            {\printfield{volume}%
+            \printfield{part}}
+            {}%
+        \newunit
+        \printfield{volumes}%
+        }
+        {
+        \setunit{\addcomma\space}%
+        \printfield{edition}%
+        \newunit
+        \iffieldundef{maintitle}
+            {\printfield{volume}%
+            \printfield{part}}
+            {}%
+        \setunit{\addcomma\space}%
+        \printfield{volumes}%
+        }{}{}
+    \xpatchbibdriver{collection}
+        {%
+        \printfield{edition}%
+        \newunit
+        \iffieldundef{maintitle}
+            {\printfield{volume}%
+            \printfield{part}}
+            {}%
+        \newunit
+        \printfield{volumes}%
+        }
+        {
+        \setunit{\addcomma\space}%
+        \printfield{edition}%
+        \newunit
+        \iffieldundef{maintitle}
+            {\printfield{volume}%
+            \printfield{part}}
+            {}%
+        \setunit{\addcomma\space}%
+        \printfield{volumes}%
+        }{}{}
+    \xpatchbibdriver{incollection}
+        {%
+        \printfield{edition}%
+        \newunit
+        \iffieldundef{maintitle}
+            {\printfield{volume}%
+            \printfield{part}}
+            {}%
+        \newunit
+        \printfield{volumes}%
+        }
+        {%
+        \setunit{\addcomma\space}%
+        \printfield{edition}%
+        \newunit
+        \iffieldundef{maintitle}
+            {\printfield{volume}%
+            \printfield{part}}
+            {}%
+        \setunit{\addcomma\space}%
+        \printfield{volumes}%
+        }{}{}
+    \xpatchbibdriver{inproceedings}
+        {%
+        \newunit
+        \printfield{volumes}%
+        }
+        {
+        \setunit{\addcomma\space}%
+        \printfield{volumes}%
+        }{}{}
+    \xpatchbibdriver{proceedings}
+        {%
+        \newunit
+        \printfield{volumes}%
+        }
+        {
+        \setunit{\addcomma\space}%
+        \printfield{volumes}%
+        }{}{}
+    \xpatchbibdriver{dataset}
+        {\printfield{edition}}
+        {\setunit{\addcomma\space}%
+        \printfield{edition}%
+        }{}{}
+    \xpatchbibdriver{manual}
+        {\printfield{edition}}
+        {\setunit{\addcomma\space}%
+        \printfield{edition}%
+        }{}{}
+    \DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished,software,online]
+  {title}{##1}
+  \DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished,software,online]
+  {citetitle}{##1}
+    \renewcommand*{\intitlepunct}{\space}
+    \xpatchbibdriver{incollection}{%
+        \usebibmacro{in:}%
+        \usebibmacro{maintitle+booktitle}%
+        \newunit\newblock
+        \usebibmacro{byeditor+others}%
+        }{%
+        \usebibmacro{in:}%
+        \usebibmacro{byeditor+others}%
+        \setunit{\addcomma\space}
+        \usebibmacro{maintitle+booktitle}%
+        }{}{}
+    \DeclareFieldFormat{doi}{%
+          doi\addcolon\space
+          \ifhyperref
+            {\href{https://doi.org/##1}{\nolinkurl{##1}}}
+            {\nolinkurl{##1}}%
+        }
+    \DeclareFieldFormat{url}{\url{##1}}
+    \DeclareFieldFormat[article,periodical]{volume}{\mkbibbold{##1}}
+    \renewbibmacro*{volume+number+eid}{%
+      \printfield{volume}%
+      \printfield{number}%
+      \setunit{\addcomma\space}%
+      \printfield{eid}}
+    \DeclareFieldFormat[article]{number}{\mkbibparens{##1}}
+    \DeclareFieldFormat{pages}{##1}
+    \xpatchbibdriver{article}{\usebibmacro{in:}}{}{}{}
+    \xpatchbibdriver{article}{%
+        \newunit
+        \usebibmacro{note+pages}%
+    }{%
+        \setunit{\addcomma\space}
+        \usebibmacro{note+pages}%
+    }{}{}
+    \DeclareFieldFormat{eid}{e##1}
+    \renewbibmacro*{journal+issuetitle}{%
+      \usebibmacro{journal}%
+      \iffieldundef{urlyear}
+        {}
+        {\setunit{\addcomma\space}
+         \printfield{urlday}
+         \mkbibmonth{\thefield{urlmonth}}
+        }
+      \setunit*{\addspace}%
+      \iffieldundef{series}
+        {}
+        {\newunit
+         \printfield{series}%
+         \setunit{\addspace}}%
+      \usebibmacro{volume+number+eid}%
+      \setunit{\addspace}%
+      \iffieldundef{year}%
+        {}
+        {\usebibmacro{issue+date}}
+      \setunit{\addcolon\space}%
+      \usebibmacro{issue}%
+      \newunit}
+    \renewbibmacro*{note+pages}{%
+      \printfield{note}%
+      \setunit{\bibpagespunct}%
+      \printfield{pages}%
+      \newunit} 
+    \xpatchbibdriver{inproceedings}{%
+        \usebibmacro{in:}%
+        \usebibmacro{maintitle+booktitle}%
+        \newunit\newblock
+        \usebibmacro{event+venue+date}%
+        \newunit\newblock
+        \usebibmacro{byeditor+others}%
+        }{%
+        \usebibmacro{in:}%
+        \usebibmacro{byeditor+others}%
+        \newunit\newblock
+        \setunit{\addcomma\space}%
+        \usebibmacro{maintitle+booktitle}%
+        \newunit\newblock
+        \usebibmacro{event+venue+date}%
+        }{}{}
+    \renewbibmacro*{url+urldate}{%
+      \usebibmacro{url}%
+      \iffieldundef{urlyear}
+        {}
+        {\setunit{\addspace}%
+         \usebibmacro{urldate}}}
+    \DeclareFieldFormat{urldate}{%
+      (accessed \thefield{urlday}\addspace%
+      \mkbibmonth{\thefield{urlmonth}}\addspace%
+      \thefield{urlyear}\isdot)}
+    \xpatchbibdriver{misc}{%
+        \newunit
+        \printfield{version}%
+        \newunit
+        \printfield{note}%
+        }{%
+        \setunit{\addspace}
+        \printfield{version}
+        \setunit{\addperiod\space}
+        \printfield{note}%
+        }{}{}
+    \xpatchbibdriver{thesis}{%
+        \printfield{note}%
+        \newunit\newblock
+        \printfield{type}%
+        \newunit
+        }{%
+        \printfield{type}%
+        \setunit{\addcomma\space}        \printfield{note}%
+        \setunit{\addcomma\space}    
+        }{}{}
+    \DeclareFieldFormat{url}{Available at\space\url{##1}}
+    \DeclareFieldFormat[article]{url}{\url{##1}}
+    \renewbibmacro*{authorstrg}{%
+      \iffieldundef{authortype}
+        {}
+        {\setunit{\addspace}\printtext[authortype]{%
+           \ifbibxstring{\thefield{authortype}}
+             {\ifboolexpr{
+                test {\ifnumgreater{\value{author}}{1}}
+                or
+                test {\ifandothers{author}}
+              }
+                {\bibstring{\thefield{authortype}s}}
+                {\bibstring{\thefield{authortype}}}}
+             {\mkbibbrackets{\thefield{authortype}}}}}}
+             
+    \DeclareSourcemap{
+      \maps[datatype=bibtex]{
+        \map{
+          \step[fieldsource=handle]
+          \step[fieldset=authortype, origfieldval]
+        }
+      }
+    }
+    \xpatchbibdriver{report}{%
+        \usebibmacro{title}%
+        \newunit
+        \printlist{language}%
+        \newunit\newblock
+        \usebibmacro{byauthor}%
+        \newunit\newblock
+        \printfield{type}%
+    }{%
+        \printfield{type}%
+        \newunit\newblock
+        \usebibmacro{title}%
+        \newunit
+        \printlist{language}%
+        \newunit\newblock
+        \usebibmacro{byauthor}%
+        \newunit\newblock
+    }{}{}
+}
+
+\def\cambridgea{
+    \RequirePackage[style=authoryear-comp,backend=biber,natbib,maxcitenames=2,maxbibnames=99,date=year,giveninits=true,terseinits=true,uniquename=init,dashed=false]{biblatex}
+    \cambridge
+}
+
+\def\cambridgeb{
+    \RequirePackage[style=authoryear-comp,backend=biber,natbib,maxcitenames=2,maxbibnames=99,date=year,giveninits=true,terseinits=false,uniquename=init,dashed=false]{biblatex}
+    \cambridge
+    \DefineBibliographyStrings{english}{%
+        bytranslator = {(trans.)},
+        byeditor = {(ed.)},
+        editor = {ed.},
+        editors = {eds.},
+        version = {ver.},
+        nodate = {n.d.},
+    }
+    \renewrobustcmd*{\bibinitdelim}{}
+    \DeclareFieldFormat{volume}{vol.~##1}
+}
+
+\def\cup@jnl@bjps{\cup@jnl@jps}
+\def\cup@jnl@bjpols{\cup@jnl@jps}
+\def\cup@jnl@jps{
+  \def\cup@journal@name{British Journal of Political Science}
+  \cup@layout@medium 
+  % \colorlet{structure@color}{green!40!black}
+  % \patchcmd{\@maketitle}
+  %   {\includegraphics[width=26mm]{cup-logo-new}}
+  %   {\parbox{5em}{\fontsize{1em}{1em}\fontfamily{NimbusSans}\bfseries\color{structure@color}British\\Journal of\\Political\\Science}}{}{}
+  \patch@numeric@authors
+  \let\endnote\footnote
+  \let\printendnotes\relax
+  \providecommand{\cup@reference@code}{%
+    \cambridgea
+  } 
+}
+
+\def\cup@jnl@nws{
+  \def\cup@journal@name{Network Science}
+  \cup@layout@medium
+    \providecommand{\cup@reference@code}{%
+    \cambridgea
+  } 
+}
+
+\def\cup@jnl@pla{
+  \def\cup@journal@name{Political Analysis}
+  \cup@layout@medium
+}
+
+\def\cup@jnl@nlp{
+  \def\cup@journal@name{Natural Language Processing}
+  \cup@layout@medium
+}
+
 \def\cup@jnl@psrm{\cup@jnl@ram}
 \def\cup@jnl@ram{
   \def\cup@journal@name{Political Science Research and Methods}
@@ -1660,30 +2154,27 @@
   \patchcmd{\thfiller}{structure@color}{black}{}{}
 }
 
-% v1.1: Add NWS, AAS journals to Medium layout
-\def\cup@jnl@nws{
-  \def\cup@journal@name{Network Science}
+\def\cup@jnl@ehs{
+  \def\cup@journal@name{Evolutionary Human Sciences}
   \cup@layout@medium
-}
-\def\cup@jnl@aas{
-  \def\cup@journal@name{Annals of Actuarial Science}
-  \cup@layout@medium
-}
-
-% CTK: Add PA to Medium Layout, consistent with overleaf
-\def\cup@jnl@pa{
-  \def\cup@journal@name{Political Analysis}
-  \cup@layout@medium
+  \providecommand{\cup@reference@code}{%
+    \RequirePackage[style=apa,backend=biber,natbib]{biblatex}
+    \renewcommand*{\bibfont}{\footnotesize}
+  }
 }
 
 % v1.1: Add MDY, JLC, SPQ to Small layout
-\def\cup@jnl@mdy{
-  \def\cup@journal@name{Macroeconomic Dynamics}
-  \cup@layout@small
-}
+% --- Small journals ---
 \def\cup@jnl@jlc{
   \def\cup@journal@name{Journal of Law and Courts}
   \cup@layout@small
+}
+\def\cup@jnl@mdy{
+  \def\cup@journal@name{Macroeconomic Dynamics}
+  \cup@layout@small
+    \providecommand{\cup@reference@code}{%
+    \cambridgeb
+  } 
 }
 \def\cup@jnl@spq{
   \def\cup@journal@name{State Politics \& Policy Quarterly}
