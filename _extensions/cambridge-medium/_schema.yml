@@ -1,0 +1,22 @@
+$schema: https://m.canouil.dev/quarto-wizard/assets/schema/v1/extension-schema.json
+
+formats:
+  cambridge-medium-pdf:
+    classoption:
+      type: array
+      description: Cambridge class options including journal presets and layout switches.
+      items:
+        type: string
+    number-sections:
+      type: boolean
+      description: Enable section numbering in the manuscript.
+    toc:
+      type: boolean
+      description: Enable or disable table of contents rendering.
+    fontfamily:
+      type: string
+      description: Main LaTeX font family identifier.
+    cite-method:
+      type: string
+      enum: [biblatex, natbib]
+      description: Citation processing method for PDF output.
