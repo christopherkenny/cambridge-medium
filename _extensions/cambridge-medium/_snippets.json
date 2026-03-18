@@ -1,0 +1,20 @@
+{
+  "Cambridge format setup": {
+    "prefix": "format",
+    "body": [
+      "format:",
+      "  cambridge-medium-pdf: default"
+    ],
+    "description": "Enable Cambridge Medium PDF format."
+  },
+  "Cambridge journal option": {
+    "prefix": "journal",
+    "body": [
+      "format:",
+      "  cambridge-medium-pdf:",
+      "    classoption:",
+      "      - ${1:medium}"
+    ],
+    "description": "Set a Cambridge journal class option such as medium, jog, or pa."
+  }
+}
