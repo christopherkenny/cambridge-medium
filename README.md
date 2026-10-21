@@ -54,7 +54,7 @@ format:
   - `bjps`, `bjpols`, `jps`: British Journal of Political Science
   - `jjps`: Japanese Journal of Political Science
   - `ash`: Antimicrobial Stewardship \& Healthcare Epidemiology
-  - `pa`: Political Analysis
+  - `pla`, `pa`: Political Analysis
   - `pasa`, `pas`: Publications of the Astronomical Society of Australia
   - `psrm`, `ram`: Political Science Research and Methods
   - `nws`: Network Science
