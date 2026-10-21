@@ -2125,6 +2125,7 @@
   } 
 }
 
+\def\cup@jnl@pa{\cup@jnl@pla}
 \def\cup@jnl@pla{
   \def\cup@journal@name{Political Analysis}
   \cup@layout@medium
